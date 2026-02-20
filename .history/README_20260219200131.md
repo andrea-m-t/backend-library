@@ -1,0 +1,8 @@
+# Library App
+
+## Overview
+Library App Backend
+
+## Authors
+- Diego - Product Owner & Developer
+- Andrea - Scrum Master & Developer
