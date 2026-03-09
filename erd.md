@@ -9,22 +9,22 @@ erDiagram
 
     USERS {
         int userID PK
-        varchar(100) userName
-        varchar(100) email UK
-        varchar(200) paswordHash
+        varchar_100 userName
+        varchar_100 email UK
+        varchar_200 paswordHash
         int createdAt
         int updateAt
-        set('regular','admin') userType
+        enum_user_type userType
     }
 
     BOOKS {
         int bookID PK
-        varchar(100) title
-        varchar(100) authorName
-        varchar(100) coverUrl
+        varchar_100 title
+        varchar_100 authorName
+        varchar_100 coverUrl
         date firstPublishYear
         int edition
-        set('Digital','Physical') format
+        enum_book_format format
         date createdAt
         date updatedAt
     }
@@ -34,7 +34,7 @@ erDiagram
         int userID FK
         int bookID FK
         date dueDate
-        set('In progress','Finished') Status
+        enum_loan_status Status
         date createdAt
         date updatedAt
     }
@@ -43,7 +43,7 @@ erDiagram
         int puechaseId PK
         int userID FK
         int bookID FK
-        decimal(6,2) Price
+        decimal_6_2 Price
         date purchaseAt
         date createdAt
     }
@@ -52,6 +52,11 @@ erDiagram
 ## Notes
 
 - `USERS.email` has a unique index (`email_unique`).
+- SQL exact types:
+- `USERS.userName` and `USERS.email` are `varchar(100)`, `USERS.paswordHash` is `varchar(200)`, `USERS.userType` is `set('regular','admin')`.
+- `BOOKS.title`, `BOOKS.authorName`, `BOOKS.coverUrl` are `varchar(100)`, `BOOKS.format` is `set('Digital','Physical')`.
+- `LOANS.Status` is `set('In progress','Finished')`.
+- `PURCHASES.Price` is `decimal(6,2)`.
 - `LOANS.userID -> USERS.userID` (`userID_FK_loans`).
 - `LOANS.bookID -> BOOKS.bookID` (`bookID_FK_loans`).
 - `PURCHASES.userID -> USERS.userID` (`userID_FK`).
