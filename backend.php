@@ -1,40 +1,5 @@
 <?php
-switch($_SERVER["REQUEST_METHOD"]){
-    
-    case "POST":
-        switch($_SERVER["PATH_INFO"]){
-            case "/register":
-                echo "register api";
-                break;
+declare(strict_types=1);
 
-            case "/login":
-                echo "login api";
-                break;
-
-            default:
-                http_response_code(400);
-                echo "Path is not valid ＞﹏＜";
-        }
-        break;
-
-    case "GET":
-        switch($_SERVER["PATH_INFO"]){
-            case "/catalog":
-                echo "list of books";
-                break;
-
-            case "/about":
-                echo "about info";
-                break;
-
-            default:
-                http_response_code(400);
-                echo "Path is not valid :(";
-        }
-        break;
-
-    default:
-        http_response_code(400);
-        echo "VERY VERY BAD REQUEST :(";
-}
+require __DIR__ . '/public/index.php';
 ?>
