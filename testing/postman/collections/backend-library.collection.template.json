@@ -1,0 +1,9 @@
+{
+  "info": {
+    "name": "Backend Library API",
+    "_postman_id": "replace-this-id-after-export",
+    "description": "Template file. Replace with your real Postman collection export.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": []
+}
