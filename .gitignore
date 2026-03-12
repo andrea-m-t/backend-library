@@ -22,3 +22,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# runtime logs
+/storage/logs/*.log
+
+# postman local environments (may contain secrets)
+/testing/postman/environments/*.local.json

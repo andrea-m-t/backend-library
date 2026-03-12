@@ -78,6 +78,21 @@ INSERT INTO `books` (`bookID`, `title`, `authorName`, `coverUrl`, `firstPublishY
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `audit_logs`
+--
+
+CREATE TABLE `audit_logs` (
+  `id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `action` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `entity` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `entity_id` int NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `loans`
 --
 
@@ -199,36 +214,36 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `userName`, `email`, `paswordHash`, `createdAt`, `updateAt`, `userType`) VALUES
-(1, 'User01', 'user01@mail.com', 'hash01', 1772683760, 1772683760, ''),
-(2, 'User02', 'user02@mail.com', 'hash02', 1772683760, 1772683760, ''),
-(3, 'User03', 'user03@mail.com', 'hash03', 1772683760, 1772683760, ''),
-(4, 'User04', 'user04@mail.com', 'hash04', 1772683760, 1772683760, ''),
-(5, 'User05', 'user05@mail.com', 'hash05', 1772683760, 1772683760, ''),
-(6, 'User06', 'user06@mail.com', 'hash06', 1772683760, 1772683760, ''),
-(7, 'User07', 'user07@mail.com', 'hash07', 1772683760, 1772683760, ''),
-(8, 'User08', 'user08@mail.com', 'hash08', 1772683760, 1772683760, ''),
-(9, 'User09', 'user09@mail.com', 'hash09', 1772683760, 1772683760, ''),
-(10, 'User10', 'user10@mail.com', 'hash10', 1772683760, 1772683760, ''),
-(11, 'User11', 'user11@mail.com', 'hash11', 1772683760, 1772683760, ''),
-(12, 'User12', 'user12@mail.com', 'hash12', 1772683760, 1772683760, ''),
-(13, 'User13', 'user13@mail.com', 'hash13', 1772683760, 1772683760, ''),
-(14, 'User14', 'user14@mail.com', 'hash14', 1772683760, 1772683760, ''),
-(15, 'User15', 'user15@mail.com', 'hash15', 1772683760, 1772683760, ''),
-(16, 'User16', 'user16@mail.com', 'hash16', 1772683760, 1772683760, ''),
-(17, 'User17', 'user17@mail.com', 'hash17', 1772683760, 1772683760, ''),
-(18, 'User18', 'user18@mail.com', 'hash18', 1772683760, 1772683760, ''),
-(19, 'User19', 'user19@mail.com', 'hash19', 1772683760, 1772683760, ''),
-(20, 'User20', 'user20@mail.com', 'hash20', 1772683760, 1772683760, ''),
-(21, 'User21', 'user21@mail.com', 'hash21', 1772683760, 1772683760, ''),
-(22, 'User22', 'user22@mail.com', 'hash22', 1772683760, 1772683760, ''),
-(23, 'User23', 'user23@mail.com', 'hash23', 1772683760, 1772683760, ''),
-(24, 'User24', 'user24@mail.com', 'hash24', 1772683760, 1772683760, ''),
-(25, 'User25', 'user25@mail.com', 'hash25', 1772683760, 1772683760, ''),
-(26, 'User26', 'user26@mail.com', 'hash26', 1772683760, 1772683760, ''),
-(27, 'User27', 'user27@mail.com', 'hash27', 1772683760, 1772683760, ''),
-(28, 'User28', 'user28@mail.com', 'hash28', 1772683760, 1772683760, ''),
-(29, 'User29', 'user29@mail.com', 'hash29', 1772683760, 1772683760, ''),
-(30, 'User30', 'user30@mail.com', 'hash30', 1772683760, 1772683760, '');
+(1, 'User01', 'user01@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(2, 'User02', 'user02@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(3, 'User03', 'user03@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(4, 'User04', 'user04@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(5, 'User05', 'user05@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(6, 'User06', 'user06@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(7, 'User07', 'user07@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(8, 'User08', 'user08@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(9, 'User09', 'user09@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(10, 'User10', 'user10@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(11, 'User11', 'user11@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(12, 'User12', 'user12@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(13, 'User13', 'user13@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(14, 'User14', 'user14@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(15, 'User15', 'user15@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(16, 'User16', 'user16@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(17, 'User17', 'user17@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(18, 'User18', 'user18@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(19, 'User19', 'user19@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(20, 'User20', 'user20@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(21, 'User21', 'user21@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(22, 'User22', 'user22@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(23, 'User23', 'user23@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(24, 'User24', 'user24@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(25, 'User25', 'user25@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(26, 'User26', 'user26@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(27, 'User27', 'user27@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(28, 'User28', 'user28@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(29, 'User29', 'user29@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, ''),
+(30, 'User30', 'user30@mail.com', '$2y$10$06.2yT6h7zEKGXorV5ryEO16.A0LFtSoH0As2XY7jAOVApkrbzzjK', 1772683760, 1772683760, '');
 
 --
 -- Indexes for dumped tables
@@ -239,6 +254,14 @@ INSERT INTO `users` (`userID`, `userName`, `email`, `paswordHash`, `createdAt`, 
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`bookID`);
+
+--
+-- Indexes for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `audit_logs_user_id_idx` (`user_id`),
+  ADD KEY `audit_logs_entity_idx` (`entity`,`entity_id`);
 
 --
 -- Indexes for table `loans`
@@ -274,6 +297,12 @@ ALTER TABLE `books`
   MODIFY `bookID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `loans`
 --
 ALTER TABLE `loans`
@@ -296,6 +325,12 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  ADD CONSTRAINT `audit_logs_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`userID`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `loans`
 --
 ALTER TABLE `loans`
@@ -313,3 +348,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
