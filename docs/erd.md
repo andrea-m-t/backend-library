@@ -6,6 +6,7 @@ erDiagram
     BOOKS ||--o{ LOANS : bookID
     USERS ||--o{ PURCHASES : userID
     BOOKS ||--o{ PURCHASES : bookID
+    USERS ||--o{ AUDIT_LOGS : user_id
 
     USERS {
         int userID PK
@@ -47,6 +48,15 @@ erDiagram
         date purchaseAt
         date createdAt
     }
+
+    AUDIT_LOGS {
+        int id PK
+        int user_id FK_nullable
+        varchar_20 action
+        varchar_50 entity
+        int entity_id
+        datetime timestamp
+    }
 ```
 
 ## Notes
@@ -57,8 +67,10 @@ erDiagram
 - `BOOKS.title`, `BOOKS.authorName`, `BOOKS.coverUrl` are `varchar(100)`, `BOOKS.format` is `set('Digital','Physical')`.
 - `LOANS.Status` is `set('In progress','Finished')`.
 - `PURCHASES.Price` is `decimal(6,2)`.
+- `AUDIT_LOGS.action` is `varchar(20)`, `AUDIT_LOGS.entity` is `varchar(50)`, `AUDIT_LOGS.timestamp` is `datetime`.
 - `LOANS.userID -> USERS.userID` (`userID_FK_loans`).
 - `LOANS.bookID -> BOOKS.bookID` (`bookID_FK_loans`).
 - `PURCHASES.userID -> USERS.userID` (`userID_FK`).
 - `PURCHASES.bookID -> BOOKS.bookID` (`bookID_FK`).
-- All foreign keys are `ON DELETE RESTRICT` and `ON UPDATE RESTRICT`.
+- `AUDIT_LOGS.user_id -> USERS.userID` (`audit_logs_user_id_fk`, nullable, `ON DELETE SET NULL`).
+- Foreign keys use `ON UPDATE RESTRICT`. Most use `ON DELETE RESTRICT`, except `AUDIT_LOGS.user_id` which uses `ON DELETE SET NULL`.
